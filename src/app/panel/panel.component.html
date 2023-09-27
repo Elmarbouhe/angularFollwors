@@ -1,0 +1,99 @@
+<br>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div ngModelGroup="fullName">
+    <div class="form-group">
+      <label for="exampleInputEmail1">first name</label>
+      <input required
+             type="text"
+             ngModel
+             name="firstname"
+             #f="ngModel"
+             class="form-control"
+             id="exampleInputEmail1"
+             aria-describedby="emailHelp"
+             placeholder="Enter email">
+      <small id="emailHelp"
+             class="form-text text-muted">
+             We'll never share your email with anyone else.
+      </small>
+      <span class="text-danger"
+            *ngIf="f.invalid && f.touched">
+            First name is required
+      </span>
+    </div>
+    <div>
+      <label for="lastname">last name</label>
+      <input required
+             type="text"
+             ngModel
+             name="lastname"
+             #f="ngModel"
+             class="form-control"
+             id="lastname"
+             placeholder="name">
+      <span class="text-danger"
+            *ngIf="f.invalid && f.touched">
+            name is required
+      </span>
+    </div>
+  </div>
+  <div class="form-grope">
+    <label for="contact">countacte list</label>
+    <select required
+            ngModel
+            name="contact"
+            #f="ngModel"
+            class="form-control"
+            id="contact">
+      <option value="">select</option>
+      <option value="" *ngFor="let c of contactList">
+        {{ c }}
+      </option>
+    </select>
+    <span class="text-danger"
+          *ngIf="f.invalid && f.touched">
+          contact is required
+    </span>
+  </div>
+  <div>
+    <label for="exampleInputPassword1">comment </label>
+    <textarea required
+           type="text"
+           ngModel
+           name="comment"
+           #f="ngModel"
+           class="form-control"
+           id="exampleInputPassword1"
+           placeholder="comment">
+    </textarea>
+
+    <span class="text-danger"
+          *ngIf="f.invalid && f.touched">
+          comment is required
+    </span>
+  </div>
+  <div class="radio" *ngFor="let r of contactList">
+    <label for="radio">
+      <input type="radio"
+             id="radio1"
+             name="radio"
+             [value]="r"
+             ngModel>
+             {{r}}
+    </label>
+  </div>
+  <div class="checkbox">
+    <label for="">
+      <input type="checkbox" name="Subscribe" ngModel>
+      Subscribe
+    </label>
+  </div>
+  <div class="form-group">
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+  </div>
+</form>
+
+<!-- Path: src/app/panel/panel.component.ts -->
+<p>
+  {{ form.value | json}}
+</p>
